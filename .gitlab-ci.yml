@@ -1,0 +1,19 @@
+# requiring the environment of Node 6.9.4
+image: node:6.9.5
+
+cache:
+  paths:
+    - node_modules/
+
+pages:
+  stage: deploy
+  script:
+    - npm install
+    - npm run build
+    - rm -rf public
+    - mv build public
+  artifacts:
+    paths:
+    - public 
+  only:
+    - master
